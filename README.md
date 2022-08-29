@@ -1,5 +1,5 @@
 # GA
-This is the code repo for my GA
+The code repo for my GA
 
 
 ### ROADMAP
