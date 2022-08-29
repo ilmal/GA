@@ -1,8 +1,8 @@
 # GA
-The code repo for my GA
+code repo for GA
 
 
-### ROADMAP
+## ROADMAP
 
 - select a simple test dataset for end metrics
 - build the model, and get it working on a single node
