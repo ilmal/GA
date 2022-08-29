@@ -11,3 +11,9 @@ The code repo for my GA
 - build a k8s controller to manage pods
 - run the dataset on the two systems and extract metrics
 - analyse the data in GA
+
+
+**DATASET: **
+
+- https://www.kaggle.com/datasets/gpiosenka/100-bird-species
+
