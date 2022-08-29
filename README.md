@@ -13,7 +13,7 @@ The code repo for my GA
 - analyse the data in GA
 
 
-** DATASET: **
+**DATASET:**
 
 - https://www.kaggle.com/datasets/gpiosenka/100-bird-species
 
