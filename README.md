@@ -17,3 +17,6 @@ code repo for GA
 
 - https://www.kaggle.com/datasets/gpiosenka/100-bird-species
 
+**k8s cheat cheet**
+
+- https://www.kubeflow.org/docs/components/training/tftraining/
