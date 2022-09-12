@@ -1,6 +1,7 @@
 import numpy as np
+import tensorflow as tf
 
-def train(train_data, validation_data):
+def train(train_loader, validation_loader):
 
     def create_model():
 
@@ -13,7 +14,7 @@ def train(train_data, validation_data):
 
       model.compile(
           loss=tf.keras.losses.binary_crossentropy,
-          optimizer=tf.keras.optimizers.Adam(learning_rate=LEARNING_RATE),
+          optimizer=tf.keras.optimizers.Adam(learning_rate=0.001),
           metrics=[
               tf.keras.metrics.BinaryAccuracy(name="accuracy"),
               # tf.keras.metrics.Precision(name="precision"),
@@ -24,5 +25,11 @@ def train(train_data, validation_data):
       return model
     
     
-    model.fit(train_data, validataion_data=valdataion_data)
+    model = create_model()
+
+    print(train_loader)
+
+    print(validation_loader)
+
+    model.fit(train_loader)
   

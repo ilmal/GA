@@ -77,14 +77,14 @@ def get_data(train_config, validation_config):
           return loader(image=image_array)["image"]
 
 
-  train_dataset = BirdsDataset(path=train_config.path,
-                               augmentations=train_config.augmentations,
-                               shape=train_config.shape)
+  train_dataset = BirdsDataset(path=train_config["path"],
+                               augmentations=train_config["augmentations"],
+                               shape=train_config["shape"])
 
 
-  validation_dataset = BirdsDataset(path=validation_config.path,
-                                    augmentations=validation_config.augmentations,
-                                    shape=validation_config.shape)
+  validation_dataset = BirdsDataset(path=validation_config["path"],
+                                    augmentations=validation_config["augmentations"],
+                                    shape=validation_config["shape"])
 
   print(f"Train Size: {len(train_dataset)}")
   print(f"Validation Size: {len(validation_dataset)}")
@@ -108,17 +108,17 @@ def get_data(train_config, validation_config):
 
   train_loader = DataLoader(train_dataset,
                             shuffle=True,
-                            num_workers=train_config.num_workers,
+                            num_workers=train_config["num_workers"],
                             pin_memory=True,
-                            batch_size=train_config.batch_size,
+                            batch_size=train_config["batch_size"],
                             collate_fn=collate_fn)
 
 
   validation_loader = DataLoader(validation_dataset,
                             shuffle=True,
-                            num_workers=validation_config.num_workers,
+                            num_workers=validation_config["num_workers"],
                             pin_memory=True,
-                            batch_size=validation_config.batch_size,
+                            batch_size=validation_config["batch_size"],
                             collate_fn=collate_fn)
   
-  return train_loader, validataion_loader
+  return train_loader, validation_loader
