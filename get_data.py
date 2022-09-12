@@ -86,7 +86,7 @@ def get_data(train_config, validation_config):
                                     augmentations=validation_config["augmentations"],
                                     shape=validation_config["shape"])
 
-  print(f"Train Size: {len(train_dataset)}")
+  print(f"Train Size:  {len(train_dataset)}")
   print(f"Validation Size: {len(validation_dataset)}")
   print(f"Num Classes: {len(train_dataset.labels)}")
 
