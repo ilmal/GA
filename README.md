@@ -20,3 +20,14 @@ code repo for GA
 **k8s cheat cheet**
 
 - https://www.kubeflow.org/docs/components/training/tftraining/
+
+
+
+TILL NÄSTA TISDAG
+
+vad som behövs kodas, med containers, hur mkt som kan hämtas från kubeflow
+
+en mer konkret tidsplan
+
+se till att alla delar finns där
+
