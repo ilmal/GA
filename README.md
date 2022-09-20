@@ -33,6 +33,8 @@ se till att alla delar finns där
 
 REDOVISNING:
 
-använd diagram, loss divergens
+förklara hypotesen
+
+använd diagram, loss divergens i resultat
 
 
