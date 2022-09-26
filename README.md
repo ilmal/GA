@@ -1,5 +1,5 @@
 # GA
-code repo for GA
+code repo for "Gymnasie Arbete"
 
 
 ## ROADMAP
