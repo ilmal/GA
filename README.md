@@ -4,37 +4,25 @@ code repo for GA
 
 ## ROADMAP
 
-- select a simple test dataset for end metrics
-- build the model, and get it working on a single node
-- run the model on multiple nodes
-- run the model on docker
-- build a k8s controller to manage pods
-- run the dataset on the two systems and extract metrics
-- analyse the data in GA
-
-
-**DATASET:**
-
-- https://www.kaggle.com/datasets/gpiosenka/100-bird-species
-
-**k8s cheat cheet**
-
-- https://www.kubeflow.org/docs/components/training/tftraining/
+- Use MNIST dataset for metrics
+- Create TfJobs (https://www.kubeflow.org/docs/components/training/tftraining/) with MNIST and deploy on k8s
+- Create and deploy MNIST model with single node computation
+- Deploy MNIST model with multi worker computation (https://www.tensorflow.org/guide/distributed_training#multiworkermirroredstrategy) Use mirror strat
+- Run metrics on both systems (TfJobs on k8s and multi worker computation)
+- Analyze metrics
+- Done
 
 
 
-TILL NÄSTA TISDAG
+### TILL NÄSTA TISDAG
 
-vad som behövs kodas, med containers, hur mkt som kan hämtas från kubeflow
+- vad som behövs kodas, med containers, hur mkt som kan hämtas från kubeflow
+- en mer konkret tidsplan
+- se till att alla delar finns där
 
-en mer konkret tidsplan
+## REDOVISNING:
 
-se till att alla delar finns där
-
-REDOVISNING:
-
-förklara hypotesen
-
-använd diagram, loss divergens i resultat
+- förklara hypotesen
+- använd diagram, loss divergens i resultat
 
 
