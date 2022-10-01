@@ -167,6 +167,20 @@ statefulset.apps/metacontroller              1/1     10m
 ```
 
 ```
-nils@NilsOld:/mnt/cs/GA$ k create -f mnist.yaml
+nils@NilsOld:/mnt/cs/GA$ k create -f mnist.yaml 
+tfjob.kubeflow.org/tfjobd5znj created
 ```
+
+```
+nils@NilsOld:/mnt/cs/GA$ k get tfjob
+NAME         STATE     AGE
+tfjobd5znj   Created   62s
+```
+
+
+
+
+
+
+
 
