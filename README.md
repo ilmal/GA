@@ -22,6 +22,10 @@ code repo for "Gymnasie Arbete"
 
 ## REDOVISNING:
 
+### SOURCES:
+
+- https://towardsdatascience.com/deploying-kubeflow-to-a-bare-metal-gpu-cluster-from-scratch-6865ebcde032
+
 - förklara hypotesen
 - använd diagram, loss divergens i resultat
 
