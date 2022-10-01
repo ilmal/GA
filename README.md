@@ -17,7 +17,7 @@ code repo for "Gymnasie Arbete"
 
 - I created the AI model
 - I downloaded kubeflow manifests to the cluster using k8s kustomize (make sure k8s cluster is v1.21.1, kustomize is v3.2.0)
-- 
+- "k create -f mnist.yaml"
 
 
 ### TILL NÄSTA TISDAG
@@ -166,5 +166,7 @@ statefulset.apps/kserve-controller-manager   1/1     10m
 statefulset.apps/metacontroller              1/1     10m
 ```
 
-
+```
+nils@NilsOld:/mnt/cs/GA$ k create -f mnist.yaml
+```
 
