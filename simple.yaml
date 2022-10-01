@@ -1,0 +1,31 @@
+apiVersion: "kubeflow.org/v1"
+kind: TFJob
+metadata:
+  name: tfjob-simple
+  namespace: kubeflow
+spec:
+   tfReplicaSpecs:
+     Worker:
+       replicas: 50
+       restartPolicy: OnFailure
+       selector:
+        matchLabels:
+          type: tfjob-simple
+       template:
+         spec:
+           containers:
+             - name: tensorflow
+               image: gcr.io/kubeflow-ci/tf-mnist-with-summaries:1.0
+               command:
+                 - "python"
+                 - "/var/tf_mnist/mnist_with_summaries.py"
+               args:
+                 - --saved_model_path=gs://bucket/saved_model_dir
+         spec:
+          topologySpreadConstraints:
+            - maxSkew: 1
+              topologyKey: kubernetes.io/hostname
+              whenUnsatisfiable: ScheduleAnyway
+              labelSelector:
+                matchLabels:
+                  type: tfjob-simple   
