@@ -12,6 +12,10 @@ code repo for "Gymnasie Arbete"
 - Analyze metrics
 - Done
 
+## notes
+
+- the model_save path is only passed into the app as a env variable, and so the saving needs to be handled internally in the app
+
 
 ## SETUP PROCESS:
 
