@@ -18,6 +18,7 @@ code repo for "Gymnasie Arbete"
 
 - Mount a pvc and let multiple nodes write with: https://stackoverflow.com/questions/67345577/can-we-connect-multiple-pods-to-the-same-pvc
 
+- https://github.com/kubeflow/training-operator/issues/67
 
 ## SETUP PROCESS:
 
