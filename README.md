@@ -16,6 +16,8 @@ code repo for "Gymnasie Arbete"
 
 - the model_save path is only passed into the app as a env variable, and so the saving needs to be handled internally in the app
 
+- Mount a pvc and let multiple nodes write with: https://stackoverflow.com/questions/67345577/can-we-connect-multiple-pods-to-the-same-pvc
+
 
 ## SETUP PROCESS:
 
