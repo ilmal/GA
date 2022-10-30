@@ -1,3 +1,16 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+ name: mnist-pv
+spec:
+ accessModes:
+   - ReadOnlyMany
+ resources:
+   requests:
+     storage: 10Gi
+  
+---
+
 apiVersion: "kubeflow.org/v1"
 kind: TFJob
 metadata:
@@ -6,26 +19,43 @@ metadata:
 spec:
    tfReplicaSpecs:
      Worker:
-       replicas: 50
+       replicas: 5
        restartPolicy: OnFailure
-       selector:
-        matchLabels:
-          type: tfjob-simple
        template:
+         metadata:
+           labels:
+             type: tfjob-mnist
+           annotations:
+             sidecar.istio.io/inject: "false"
          spec:
            containers:
              - name: tensorflow
-               image: gcr.io/kubeflow-ci/tf-mnist-with-summaries:1.0
+               image: 192.168.3.122:30002/mnist/mnist_image:latest
                command:
-                 - "python"
-                 - "/var/tf_mnist/mnist_with_summaries.py"
-               args:
-                 - --saved_model_path=gs://bucket/saved_model_dir
-         spec:
-          topologySpreadConstraints:
-            - maxSkew: 1
-              topologyKey: kubernetes.io/hostname
-              whenUnsatisfiable: ScheduleAnyway
-              labelSelector:
-                matchLabels:
-                  type: tfjob-simple   
+                - "python3"
+                - "mnist_multi.py"
+                - "/emnist_data"
+                #- "/save_model/"
+               volumeMounts:
+                 - mountPath: /save_model
+                   name: kubeflow-nfs
+                 - mountPath: /emnist_data
+                   name: mnist-pv
+           nodeSelector:
+             kubeflow: "true"
+           topologySpreadConstraints:
+             - maxSkew: 1
+               topologyKey: kubernetes.io/hostname
+               whenUnsatisfiable: ScheduleAnyway
+               labelSelector:
+                 matchLabels:
+                   type: tfjob-mnist
+           volumes:
+             - name: kubeflow-nfs
+               nfs:
+                 path: /mnt/kubeflow
+                 server: 192.168.3.122
+             - name: mnist-pv
+               persistentVolumeClaim:
+                 claimName: mnist-pv
+
