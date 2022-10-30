@@ -20,6 +20,10 @@ code repo for "Gymnasie Arbete"
 
 - https://github.com/kubeflow/training-operator/issues/67
 
+- https://dzlab.github.io/ml/2020/07/18/kubeflow-training/
+
+- https://github.com/kubeflow/training-operator/blob/master/examples/tensorflow/dist-mnist/tf_job_mnist.yaml
+
 ## SETUP PROCESS:
 
 - I created the AI model
