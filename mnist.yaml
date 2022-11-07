@@ -59,7 +59,7 @@ spec:
     #            persistentVolumeClaim:
     #              claimName: mnist-pv
      Worker:
-       replicas: 4
+       replicas: 1
        restartPolicy: OnFailure
        template:
          metadata:
@@ -75,7 +75,7 @@ spec:
                 - "python3"
                 - "mnist_worker.py"
                 - "/emnist_data"
-                #- "/save_model/"
+                - "/save_model/"
                volumeMounts:
                  - mountPath: /save_model
                    name: kubeflow-nfs

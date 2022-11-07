@@ -1,5 +1,6 @@
 import tensorflow as tf
-
+import pickle
+import os
 
 """
 
@@ -38,8 +39,13 @@ global_batch_size = 1000 * strategy.num_replicas_in_sync
 import tensorflow_datasets as tfds
 import sys
 
-#OUTPUT_PATH = str(sys.argv[1])
+OUTPUT_PATH = str(sys.argv[2])
 INPUT_PATH = str(sys.argv[1])
+
+print("INPUT_PATH: ", INPUT_PATH)
+print("OUTPUT_PATH: ", OUTPUT_PATH)
+
+print("listdir: ", os.listdir(INPUT_PATH))
 
 (ds_train, ds_test), ds_info = tfds.load(
     'emnist',
@@ -92,10 +98,13 @@ with strategy.scope():
         metrics=[tf.keras.metrics.SparseCategoricalAccuracy()],
     )
 
-    model.fit(
+    history = model.fit(
         ds_train,
-        epochs=6,
+        epochs=10,
         #validation_data=ds_test,
     )
 
-#model.save(OUTPUT_PATH + "mnist_model")
+with open(OUTPUT_PATH + "history.txt", "wb") as f:
+    pickle.dump(history.history,f)
+
+model.save(OUTPUT_PATH + "mnist_model")
