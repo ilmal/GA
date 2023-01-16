@@ -48,6 +48,8 @@ code repo for "Gymnasie Arbete"
 - använd diagram, loss divergens i resultat
 
 
+https://github.com/nottombrown/distributed-tensorflow-example/blob/master/example.py
+
 
 8ps 12 work:
 71 sek
