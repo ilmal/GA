@@ -47,8 +47,13 @@ code repo for "Gymnasie Arbete"
 - förklara hypotesen
 - använd diagram, loss divergens i resultat
 
+### PS
 
 https://github.com/nottombrown/distributed-tensorflow-example/blob/master/example.py
+
+implement Parimiter server to speed up syncronisation between workers. 
+
+Should only need to specify PS job to join stategy, and worker job to do the default work.
 
 
 8ps 12 work:
