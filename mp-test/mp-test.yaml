@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mp-test
+  labels:
+    app: mp-test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mp-test
+  template:
+    metadata:
+      labels:
+        app: mp-test
+    spec:
+      containers:
+      - name: mp-test
+        image: 192.168.3.122:30002/ai-app/mp-test:latest

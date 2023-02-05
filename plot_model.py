@@ -2,15 +2,20 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import pickle
+import json
 
 
 def main():
 
     # Loading models:
-    with open("history_docker.txt", "rb") as f:
-        kubeflow_history = pickle.load(f)
+    # with open("history_docker.txt", "rb") as f:
+    #     history = pickle.load(f)
 
-    # print(kubeflow_history.history["accuracy"])
+    history = json.load(open("history_docker.txt", 'r'))
+
+    print(history)
+
+    print(history.params)
 
     # plt.plot()
 

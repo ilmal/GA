@@ -1,0 +1,112 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+ name: mnist-pv
+spec:
+ accessModes:
+   - ReadOnlyMany
+ resources:
+   requests:
+     storage: 10Gi
+  
+---
+
+apiVersion: kubeflow.org/v1
+kind: TFJob
+metadata:
+  generateName: tfjob-mnist
+  namespace: kubeflow
+spec:
+  tfReplicaSpecs:
+     Worker:
+       replicas: 4
+       restartPolicy: Never
+       template:
+         metadata:
+           labels:
+             type: tfjob-mnist
+           annotations:
+             sidecar.istio.io/inject: "false"
+         spec:
+           containers:
+             - name: tensorflow
+               image: 192.168.3.122:30002/mnist/mnist_ps:latest
+               imagePullPolicy: Always
+               command:
+                - "python3"
+                - "mnist_ps.py"
+                - "/emnist_data/"
+                - "/save_model/"
+               volumeMounts:
+                 - mountPath: /save_model
+                   name: kubeflow-nfs
+                 - mountPath: /emnist_data
+                   name: mnist-pv
+               resources:
+                 limits:
+                   cpu: "6"
+                 requests:
+                   cpu: "1"
+           nodeSelector:
+             kubeflow: "true"
+           topologySpreadConstraints:
+             - maxSkew: 1
+               topologyKey: kubernetes.io/hostname
+               whenUnsatisfiable: ScheduleAnyway
+               labelSelector:
+                 matchLabels:
+                   type: tfjob-mnist
+           volumes:
+             - name: kubeflow-nfs
+               nfs:
+                 path: /mnt/kubeflow
+                 server: 192.168.3.122
+             - name: mnist-pv
+               persistentVolumeClaim:
+                 claimName: mnist-pv
+     PS:
+       replicas: 2
+       restartPolicy: Never
+       template:
+         metadata:
+           labels:
+             type: tfjob-mnist
+           annotations:
+             sidecar.istio.io/inject: "false"
+         spec:
+           containers:
+             - name: tensorflow
+               image: 192.168.3.122:30002/mnist/mnist_ps:latest
+               imagePullPolicy: Always
+               command:
+                - "python3"
+                - "mnist_ps.py"
+                - "/emnist_data/"
+                - "/save_model/"
+               volumeMounts:
+                 - mountPath: /save_model
+                   name: kubeflow-nfs
+                 - mountPath: /emnist_data
+                   name: mnist-pv
+               resources:
+                 limits:
+                   cpu: "6"
+                 requests:
+                   cpu: "1"
+           nodeSelector:
+             kubeflow: "true"
+           topologySpreadConstraints:
+             - maxSkew: 1
+               topologyKey: kubernetes.io/hostname
+               whenUnsatisfiable: ScheduleAnyway
+               labelSelector:
+                 matchLabels:
+                   type: tfjob-mnist
+           volumes:
+             - name: kubeflow-nfs
+               nfs:
+                 path: /mnt/kubeflow
+                 server: 192.168.3.122
+             - name: mnist-pv
+               persistentVolumeClaim:
+                 claimName: mnist-pv
