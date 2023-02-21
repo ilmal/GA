@@ -4,6 +4,11 @@ import os
 
 """
 
+(anteckningar tas bort, eller skrivs till mer senare)
+docker: 264s
+k8s: 1 143s
+
+
 docker:
 14/14 [==============================] - 156s 11s/step - loss: 3.5149 - sparse_categorical_accuracy: 0.2515
 
